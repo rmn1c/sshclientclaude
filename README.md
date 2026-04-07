@@ -38,16 +38,27 @@ The output must start with `8.` (e.g. `8.0.404`).
 
 Produces one portable `.exe` (~65 MB). **No .NET runtime required** on the target machine.
 
+**PowerShell:**
+```powershell
+git clone https://github.com/rmn1c/sshclientclaude.git
+cd sshclientclaude
+
+dotnet publish -c Release -r win-x64 --self-contained true `
+    /p:PublishSingleFile=true `
+    /p:EnableCompressionInSingleFile=true `
+    /p:IncludeNativeLibrariesForSelfExtract=true `
+    -o publish\release
+```
+
+**Command Prompt (cmd.exe):**
 ```cmd
 git clone https://github.com/rmn1c/sshclientclaude.git
 cd sshclientclaude
 
-dotnet publish -c Release -r win-x64 --self-contained true ^
-    /p:PublishSingleFile=true ^
-    /p:EnableCompressionInSingleFile=true ^
-    /p:IncludeNativeLibrariesForSelfExtract=true ^
-    -o publish\release
+dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:EnableCompressionInSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true -o publish\release
 ```
+
+> **Tip:** If you'd rather not type the long command, just paste the single-line version from the CMD block above — it works in both PowerShell and cmd.exe.
 
 Your executable is at:
 
@@ -63,7 +74,7 @@ Copy it anywhere and run — no installer needed.
 
 Produces a smaller `.exe` (~1 MB) but requires the [.NET 8 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/8.0) to be installed on the target machine.
 
-```cmd
+```powershell
 dotnet publish -c Release -r win-x64 --self-contained false -o publish\fdd
 ```
 
@@ -73,7 +84,7 @@ Executable: `publish\fdd\SshClient.exe`
 
 ### Option C — Run directly from source (development)
 
-```cmd
+```powershell
 git clone https://github.com/rmn1c/sshclientclaude.git
 cd sshclientclaude
 dotnet run
