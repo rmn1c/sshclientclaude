@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc -l /home/projects/sshclientclaude/**/*.cs /home/projects/sshclientclaude/*.cs /home/projects/sshclientclaude/**/*.xaml /home/projects/sshclientclaude/*.xaml)",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}

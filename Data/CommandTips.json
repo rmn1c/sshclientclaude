@@ -1,0 +1,98 @@
+[
+  {
+    "Name": "File Operations",
+    "Icon": "📁",
+    "Tips": [
+      { "Command": "ls -la", "Description": "List all files with details" },
+      { "Command": "ls -lh", "Description": "List files with human-readable sizes" },
+      { "Command": "cd ~", "Description": "Go to home directory" },
+      { "Command": "pwd", "Description": "Print working directory" },
+      { "Command": "mkdir -p dir/sub", "Description": "Create nested directories" },
+      { "Command": "cp -r src dst", "Description": "Recursive copy" },
+      { "Command": "mv file newname", "Description": "Move or rename a file" },
+      { "Command": "rm -rf dir/", "Description": "Remove directory recursively" },
+      { "Command": "find . -name '*.log'", "Description": "Find files by name pattern" },
+      { "Command": "du -sh *", "Description": "Disk usage per item" },
+      { "Command": "df -h", "Description": "Disk free space" },
+      { "Command": "cat file.txt", "Description": "Print file contents" },
+      { "Command": "less file.txt", "Description": "Page through file" },
+      { "Command": "tail -f file.log", "Description": "Follow log in real-time" },
+      { "Command": "grep -r 'text' .", "Description": "Recursive text search" }
+    ]
+  },
+  {
+    "Name": "Networking",
+    "Icon": "🌐",
+    "Tips": [
+      { "Command": "curl -I https://example.com", "Description": "Fetch HTTP headers" },
+      { "Command": "wget -O file.zip url", "Description": "Download a file" },
+      { "Command": "ss -tlnp", "Description": "Show listening ports" },
+      { "Command": "netstat -tulpn", "Description": "Active connections" },
+      { "Command": "ping -c 4 host", "Description": "Ping a host 4 times" },
+      { "Command": "traceroute host", "Description": "Trace route to host" },
+      { "Command": "nslookup domain", "Description": "DNS lookup" },
+      { "Command": "dig domain A", "Description": "DNS A record query" },
+      { "Command": "ip addr show", "Description": "Show all IP addresses" },
+      { "Command": "ip route show", "Description": "Show routing table" },
+      { "Command": "iptables -L -n", "Description": "List firewall rules" },
+      { "Command": "ufw status verbose", "Description": "UFW firewall status" },
+      { "Command": "nc -zv host 80", "Description": "Test port connectivity" },
+      { "Command": "ssh -L 8080:localhost:80 user@host", "Description": "Local port forward" }
+    ]
+  },
+  {
+    "Name": "System Info",
+    "Icon": "💻",
+    "Tips": [
+      { "Command": "uname -a", "Description": "Kernel and OS information" },
+      { "Command": "cat /etc/os-release", "Description": "OS distribution details" },
+      { "Command": "uptime -p", "Description": "System uptime" },
+      { "Command": "free -h", "Description": "Memory usage" },
+      { "Command": "top -b -n1 | head -20", "Description": "Snapshot of running processes" },
+      { "Command": "htop", "Description": "Interactive process viewer" },
+      { "Command": "ps aux --sort=-%mem | head", "Description": "Top memory consumers" },
+      { "Command": "ps aux --sort=-%cpu | head", "Description": "Top CPU consumers" },
+      { "Command": "lscpu", "Description": "CPU architecture info" },
+      { "Command": "lsblk", "Description": "Block device list" },
+      { "Command": "lspci", "Description": "PCI devices" },
+      { "Command": "dmesg | tail -30", "Description": "Recent kernel messages" },
+      { "Command": "journalctl -xe", "Description": "Recent systemd journal" },
+      { "Command": "systemctl status service", "Description": "Service status" },
+      { "Command": "env | sort", "Description": "All environment variables" }
+    ]
+  },
+  {
+    "Name": "Permissions",
+    "Icon": "🔒",
+    "Tips": [
+      { "Command": "chmod 755 file", "Description": "Set rwxr-xr-x permissions" },
+      { "Command": "chmod -R 644 dir/", "Description": "Set rw-r--r-- recursively" },
+      { "Command": "chown user:group file", "Description": "Change file owner/group" },
+      { "Command": "chown -R user:group dir/", "Description": "Change ownership recursively" },
+      { "Command": "ls -la", "Description": "View permissions on files" },
+      { "Command": "stat file", "Description": "Detailed file metadata" },
+      { "Command": "id", "Description": "Current user and groups" },
+      { "Command": "sudo -l", "Description": "List sudo privileges" },
+      { "Command": "getfacl file", "Description": "Get ACL of a file" },
+      { "Command": "setfacl -m u:user:rx file", "Description": "Set ACL entry" },
+      { "Command": "umask 022", "Description": "Set default permission mask" },
+      { "Command": "visudo", "Description": "Safely edit sudoers file" }
+    ]
+  },
+  {
+    "Name": "Process Management",
+    "Icon": "⚙️",
+    "Tips": [
+      { "Command": "kill -9 PID", "Description": "Force kill process by PID" },
+      { "Command": "pkill -f process_name", "Description": "Kill by process name" },
+      { "Command": "nohup cmd &", "Description": "Run command immune to hangup" },
+      { "Command": "jobs -l", "Description": "List background jobs" },
+      { "Command": "fg %1", "Description": "Bring job 1 to foreground" },
+      { "Command": "bg %1", "Description": "Resume job 1 in background" },
+      { "Command": "screen -S session", "Description": "Start named screen session" },
+      { "Command": "tmux new -s name", "Description": "New tmux session" },
+      { "Command": "tmux attach -t name", "Description": "Attach to tmux session" },
+      { "Command": "strace -p PID", "Description": "Trace system calls of process" }
+    ]
+  }
+]
