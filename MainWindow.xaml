@@ -221,7 +221,7 @@
 
                         <!-- Actual terminal -->
                         <ctrl:TerminalControl x:Name="Terminal"
-                                              FontSize="{Binding TerminalFontSize}"
+                                              TerminalFontSize="{Binding TerminalFontSize}"
                                               Margin="4,4,4,4"
                                               KeyDown="Terminal_KeyDown"/>
                     </Grid>

@@ -62,7 +62,16 @@ public sealed class SshService : ISshService
 
     public void Resize(int cols, int rows)
     {
-        try { _shell?.SendWindowChangeRequest((uint)cols, (uint)rows, 0, 0); }
+        if (_shell is null) return;
+        try
+        {
+            // SendWindowChangeRequest was removed from the ShellStream public surface in SSH.NET 2023.
+            // Invoke it via reflection if present; silently skip otherwise — the shell still works,
+            // it just won't reflow to the new column/row count until reconnect.
+            var method = _shell.GetType().GetMethod("SendWindowChangeRequest",
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic);
+            method?.Invoke(_shell, [(uint)cols, (uint)rows, 0u, 0u]);
+        }
         catch { /* best-effort */ }
     }
 

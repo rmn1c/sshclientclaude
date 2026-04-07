@@ -69,19 +69,19 @@ public partial class MainWindow : Window
     {
         if (_vm.IsConnected)
         {
-            _vm.Disconnect();
+            _vm.DisconnectCommand.Execute(null);
             Terminal.Clear();
         }
         else
         {
-            await _vm.QuickConnectAsyncCommand.ExecuteAsync(null);
+            await _vm.QuickConnectCommand.ExecuteAsync(null);
         }
     }
 
     private async void Input_KeyDown(object sender, KeyEventArgs e)
     {
         if (e.Key == Key.Enter)
-            await _vm.QuickConnectAsyncCommand.ExecuteAsync(null);
+            await _vm.QuickConnectCommand.ExecuteAsync(null);
     }
 
     // ---- Terminal keyboard shortcut passthrough ----
@@ -141,7 +141,7 @@ public partial class MainWindow : Window
 
     protected override void OnClosed(EventArgs e)
     {
-        _vm.Disconnect();
+        _vm.DisconnectCommand.Execute(null);
         base.OnClosed(e);
     }
 }

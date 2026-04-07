@@ -33,7 +33,6 @@ public partial class MainViewModel : BaseViewModel
     private readonly System.Timers.Timer _uptimeTimer;
 
     public event EventHandler<string>? TerminalDataReceived;
-    public event EventHandler<(int, int)>? RequestTerminalResize;
 
     public MainViewModel(ISshService ssh, ISessionStore store)
     {

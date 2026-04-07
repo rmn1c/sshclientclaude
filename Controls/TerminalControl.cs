@@ -14,14 +14,14 @@ public sealed class TerminalControl : FrameworkElement
 {
     // ---- Dependency Properties ----
 
-    public static readonly DependencyProperty FontSizeProperty =
-        DependencyProperty.Register(nameof(FontSize), typeof(double), typeof(TerminalControl),
+    public static readonly DependencyProperty TerminalFontSizeProperty =
+        DependencyProperty.Register(nameof(TerminalFontSize), typeof(double), typeof(TerminalControl),
             new FrameworkPropertyMetadata(14.0, FrameworkPropertyMetadataOptions.AffectsMeasure, OnFontChanged));
 
-    public new double FontSize
+    public double TerminalFontSize
     {
-        get => (double)GetValue(FontSizeProperty);
-        set => SetValue(FontSizeProperty, value);
+        get => (double)GetValue(TerminalFontSizeProperty);
+        set => SetValue(TerminalFontSizeProperty, value);
     }
 
     // ---- Events ----
@@ -45,8 +45,9 @@ public sealed class TerminalControl : FrameworkElement
     private Point? _selStart, _selEnd;
     private bool _isSelecting;
 
-    private readonly ScrollViewer? _scrollViewer;
     private readonly VisualCollection _visuals;
+
+    // Background brush — painted in OnRender (FrameworkElement has no Background property)
 
     // Brushes cached for performance
     private readonly Dictionary<Color, Brush> _brushCache = [];
@@ -63,7 +64,6 @@ public sealed class TerminalControl : FrameworkElement
         Focusable = true;
         Cursor = Cursors.IBeam;
         ClipToBounds = true;
-        Background = new SolidColorBrush(TerminalCell.DefaultBg);
         UseLayoutRounding = true;
         SnapsToDevicePixels = true;
 
@@ -198,7 +198,7 @@ public sealed class TerminalControl : FrameworkElement
         if (_glyphTypeface is null) return;
         if (!_glyphTypeface.CharacterToGlyphMap.TryGetValue(ch, out ushort glyphIdx)) return;
 
-        double em = FontSize * (bold ? 1.0 : 1.0);
+        double em = TerminalFontSize * (bold ? 1.0 : 1.0);
         double advance = _glyphTypeface.AdvanceWidths[glyphIdx] * em;
 
         var glyphRun = new GlyphRun(
@@ -429,7 +429,7 @@ public sealed class TerminalControl : FrameworkElement
         if (_glyphTypeface is null) return;
 
         _glyphTypeface.CharacterToGlyphMap.TryGetValue('M', out ushort gIdx);
-        double em = FontSize;
+        double em = TerminalFontSize;
         _charWidth = _glyphTypeface.AdvanceWidths[gIdx] * em;
         _charHeight = (_glyphTypeface.Height) * em + 2;
         _charBaseline = _glyphTypeface.Baseline * em;
@@ -437,7 +437,7 @@ public sealed class TerminalControl : FrameworkElement
 
     private static void OnFontChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is TerminalControl tc) tc.MeasureFont();
+        if (d is TerminalControl tc) { tc.MeasureFont(); tc.InvalidateVisual(); }
     }
 
     // ---- Helpers ----
